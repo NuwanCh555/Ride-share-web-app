@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Driver Dashboard - FLYME</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+  <style>
+    .dashboard-container {
+      padding: 100px 5%;
+      min-height: 80vh;
+    }
+    .stats-cards {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    .stat-card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      flex: 1;
+      min-width: 250px;
+      backdrop-filter: blur(10px);
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .stat-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .stat-card p {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #00d2ff;
+    }
+    .requests-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .request-card {
+      background: #1e1e24;
+      padding: 20px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .request-info h4 {
+      margin-bottom: 5px;
+      color: #fff;
+    }
+    .request-info p {
+      color: #aaa;
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+    }
+    .accept-btn {
+      background: #00d2ff;
+      color: #000;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .accept-btn:hover {
+      background: #3a7bd5;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <a href="index.html" class="logo-container">
+        <div class="logo">FLYME DRIVER</div>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="driver_dashboard.html">Dashboard</a></li>
+          <li><a href="login.html">Logout</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="dashboard-container">
+    <h2>Driver Dashboard</h2>
+    
+    <div class="stats-cards">
+      <div class="stat-card">
+        <h3>Total Earnings (85%)</h3>
+        <p id="totalEarnings">$0.00</p>
+      </div>
+      <div class="stat-card">
+        <h3>Trips Completed</h3>
+        <p id="tripsCompleted">0</p>
+      </div>
+      <div class="stat-card">
+        <h3>Platform Fees (15%)</h3>
+        <p id="feesPaid">$0.00</p>
+      </div>
+    </div>
+
+    <h3>Pending Ride Requests</h3>
+    <div class="requests-list" id="requestsList">
+      <p>Loading requests...</p>
+    </div>
+
+    <h3>Update Profile & Vehicle Details</h3>
+    <div class="update-profile-section" style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); margin-top: 20px;">
+      <form id="updateProfileForm" enctype="multipart/form-data">
+        <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 250px; display: flex; flex-direction: column; gap: 10px;">
+            <label for="profilePic" style="color: #fff;">Profile Picture</label>
+            <input type="file" id="profilePic" name="profile_picture" accept="image/*" style="color: #fff;">
+          </div>
+          <div style="flex: 1; min-width: 250px; display: flex; flex-direction: column; gap: 10px;">
+            <label for="vehicleImage" style="color: #fff;">Vehicle Image</label>
+            <input type="file" id="vehicleImage" name="vehicle_image" accept="image/*" style="color: #fff;">
+          </div>
+        </div>
+        <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 15px;">
+          <div style="flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 10px;">
+            <label for="vehicleType" style="color: #fff;">Vehicle Type</label>
+            <input type="text" id="vehicleType" name="vehicle_type" placeholder="e.g. Sedan, SUV" required style="padding: 10px; border-radius: 5px; background: rgba(0,0,0,0.5); color: #fff; border: 1px solid rgba(255,255,255,0.3);">
+          </div>
+          <div style="flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 10px;">
+            <label for="plateNo" style="color: #fff;">Plate Number</label>
+            <input type="text" id="plateNo" name="plate_no" placeholder="e.g. ABC-1234" required style="padding: 10px; border-radius: 5px; background: rgba(0,0,0,0.5); color: #fff; border: 1px solid rgba(255,255,255,0.3);">
+          </div>
+          <div style="flex: 1; min-width: 200px; display: flex; flex-direction: column; gap: 10px;">
+            <label for="capacity" style="color: #fff;">Capacity</label>
+            <input type="number" id="capacity" name="capacity" placeholder="e.g. 4" required style="padding: 10px; border-radius: 5px; background: rgba(0,0,0,0.5); color: #fff; border: 1px solid rgba(255,255,255,0.3);">
+          </div>
+        </div>
+        <button type="submit" class="accept-btn" style="margin-top: 20px; width: 100%;">Save Details</button>
+      </form>
+      <div id="updateResult" style="margin-top: 10px;"></div>
+    </div>
+  </main>
+  
+  <script>
+    document.getElementById('updateProfileForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData  = new FormData(e.target);
+      const btn       = e.target.querySelector('button[type="submit"]');
+      const resultDiv = document.getElementById('updateResult');
+
+      // Disable button while request is in-flight
+      btn.disabled  = true;
+      btn.innerText = 'Saving...';
+      resultDiv.innerHTML = '';
+
+      try {
+        const res  = await fetch('../backend/update_profile.php', { method: 'POST', body: formData });
+        const data = await res.json();
+
+        if (data.success) {
+          resultDiv.innerHTML = `<p style="color:#2ecc71;margin-top:8px">✔ ${data.message}</p>`;
+          e.target.reset();
+        } else {
+          resultDiv.innerHTML = `<p style="color:#ff4757;margin-top:8px">✖ Error: ${data.message}</p>`;
+        }
+      } catch (err) {
+        console.error('Profile save error:', err);
+        resultDiv.innerHTML = '<p style="color:#ff4757;margin-top:8px">✖ Network error – please try again.</p>';
+      } finally {
+        btn.disabled  = false;
+        btn.innerText = 'Save Details';
+      }
+    });
+    async function loadRequests() {
+      try {
+        const res = await fetch('../backend/driver_api.php?action=get_requests');
+        const data = await res.json();
+        
+        const list = document.getElementById('requestsList');
+        if (data.status === 'success') {
+          list.innerHTML = '';
+          if (data.data.length === 0) {
+            list.innerHTML = '<p>No pending requests at the moment.</p>';
+            return;
+          }
+          data.data.forEach(req => {
+            const card = document.createElement('div');
+            card.className = 'request-card';
+            card.innerHTML = `
+              <div class="request-info">
+                <h4>Pickup: ${req.pickup_location}</h4>
+                <p>Destination: ${req.destination}</p>
+                <p>Fare: $${req.fare}</p>
+              </div>
+              <button class="accept-btn" onclick="acceptTrip(${req.id})">Accept Trip</button>
+            `;
+            list.appendChild(card);
+          });
+        }
+      } catch (err) {
+        console.error('Error fetching requests:', err);
+      }
+    }
+
+    async function loadStats() {
+      try {
+        const res = await fetch('../backend/driver_api.php?action=get_stats');
+        const data = await res.json();
+        if (data.status === 'success') {
+          document.getElementById('totalEarnings').innerText = '$' + parseFloat(data.data.net_earnings).toFixed(2);
+          document.getElementById('tripsCompleted').innerText = data.data.trips_completed;
+          document.getElementById('feesPaid').innerText = '$' + parseFloat(data.data.fees_paid).toFixed(2);
+        }
+      } catch (err) {
+        console.error('Error fetching stats:', err);
+      }
+    }
+
+    async function acceptTrip(tripId) {
+      try {
+        const res = await fetch('../backend/driver_api.php?action=accept_trip', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+          body: 'trip_id=' + tripId
+        });
+        const data = await res.json();
+        alert(data.message);
+        if (data.status === 'success') {
+          loadRequests();
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    // Single interval reference – prevents duplicates if script ever re-runs
+    let pollInterval = setInterval(loadRequests, 8000);
+
+    // Pause polling when the tab is hidden; resume when visible again
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'hidden') {
+        clearInterval(pollInterval);
+      } else {
+        loadRequests();                        // immediate fetch on return
+        pollInterval = setInterval(loadRequests, 8000);
+      }
+    });
+
+    loadRequests();
+    loadStats();
+  </script>
+</body>
+</html>

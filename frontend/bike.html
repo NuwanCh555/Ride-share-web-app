@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rent a Bike - FLYME</title>
+  <meta name="description" content="Rent a motorbike from FLYME.">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <a href="index.html" class="logo-container">
+        <img src="New folder/julm.jpg" alt="FLYME Logo" class="logo-img">
+        <div class="logo">FLYME</div>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#vehicles">Vehicles</a></li>
+        </ul>
+      </nav>
+      <i class='bx bx-menu menu-icon'></i>
+    </div>
+  </header>
+
+  <main>
+    <div class="vehicle-details">
+      <div class="vehicle-image">
+        <img src="New folder/bike.jpg" alt="Motorbike">
+      </div>
+      <div class="vehicle-info">
+        <h2>Sport Bike</h2>
+        <div class="price">Rs. 3,500 / day</div>
+        <p>Experience the thrill of the ride. Our sports bikes offer excellent fuel efficiency, speed, and maneuverability. Perfect for solo travelers and adventure seekers.</p>
+        
+        <div class="form-container" style="padding: 1.5rem; margin: 0; max-width: 100%;">
+          <h3 style="margin-bottom: 1rem; color: var(--primary-color);">Book this Vehicle</h3>
+          <form id="bookingForm">
+            <div class="form-group">
+              <label for="pickup">Pickup Location</label>
+              <input type="text" id="pickup" name="pickup" required>
+            </div>
+            <div class="form-group">
+              <label for="date">Rental Date</label>
+              <input type="date" id="date" name="date" required>
+            </div>
+            <button type="submit" class="btn">Confirm Booking</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+  
+  <script src="js/project.js"></script>
+</body>
+</html>

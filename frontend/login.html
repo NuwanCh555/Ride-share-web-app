@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login / Signup - FLYME</title>
+  <meta name="description" content="Login to FLYME vehicle rental service.">
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="navbar">
+      <a href="index.html" class="logo-container">
+        <img src="New folder/julm.jpg" alt="FLYME Logo" class="logo-img">
+        <div class="logo">FLYME</div>
+      </a>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#vehicles">Vehicles</a></li>
+        </ul>
+      </nav>
+      <i class='bx bx-menu menu-icon'></i>
+    </div>
+  </header>
+
+  <main style="display: flex; align-items: center; justify-content: center;">
+    <div class="form-container">
+      <h1>Welcome Back</h1>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="username">Username / Email</label>
+          <input type="text" id="username" name="username" required placeholder="Enter your username or email">
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required placeholder="Enter your password">
+        </div>
+        <button type="submit" class="btn" style="width: 100%; justify-content: center;">Login <i class='bx bx-log-in-circle'></i></button>
+        <div class="form-links">
+          <p>Don't have an account? <a href="register.html">Sign up here</a></p>
+        </div>
+      </form>
+    </div>
+  </main>
+  
+  <script src="js/project.js"></script>
+</body>
+</html>
