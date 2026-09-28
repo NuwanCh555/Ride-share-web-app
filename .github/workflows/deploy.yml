@@ -1,0 +1,22 @@
+name: 🚀 Deploy to InfinityFree
+
+on:
+  push:
+    branches:
+      - main  # ඔයාගේ GitHub branch එක 'master' නම් මෙතැන main වෙනුවට master ලෙස දෙන්න
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploying to FTP
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      - name: SYNC files to InfinityFree
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: /htdocs/  # InfinityFree වල වෙබ් ෆයිල්ස් දාන ප්‍රධාන ෆෝල්ඩර් එක
